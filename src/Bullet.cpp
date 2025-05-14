@@ -1,11 +1,15 @@
 #include "Bullet.hpp"
 #include <SDL_image.h>
 
-Bullet::Bullet(int x, int y) : rect{x, y, 16, 8} {}
+constexpr int BULLET_WIDTH = 16;
+constexpr int BULLET_HEIGHT = 8;
+constexpr int SCREEN_WIDTH = 800;
+
+Bullet::Bullet(int x, int y) : rect{x, y, BULLET_WIDTH, BULLET_HEIGHT}, alive(true) {}
 
 void Bullet::update(float dt) {
     rect.x += int(speed * dt);
-    if (rect.x > 800) alive = false;
+    if (rect.x > SCREEN_WIDTH) alive = false;
 }
 SDL_Rect& Bullet::getRect() {
     return rect;
